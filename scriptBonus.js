@@ -10,6 +10,7 @@ function battle() {
             this.value = value;
         }
     }
+
     let card1 = new Card("Ace of Spades", 1);
     let card2 = new Card("Ace of Hearts", 1);
     let card3 = new Card("Ace of Clubs", 1);
@@ -63,6 +64,10 @@ function battle() {
     let card51 = new Card("King of Clubs", 13);
     let card52 = new Card("King of Diamonds", 13);
 
+    //for (i = 1; i < 53; i++) {
+    //deck.push('card' + i);
+    //}
+
     deck.push(card1, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19,
         card2, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29,
         card3, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39,
@@ -100,10 +105,28 @@ function battle() {
                 playerTwoWins += 1;
                 alert("Player 2 wins this round.")
             } else if (cardOfP1.value == cardOfP2.value) {
-                // non c'è bisogno di una funzione, bisogna pero aggiungere un ...deck.shift()
-            }
-        }
+                console.log(playerOneDeck.length);
+                console.log(playerTwoDeck.length);
+                playerOneDeck.splice(1, 1);
+                playerTwoDeck.splice(1, 1);
+                console.log(playerOneDeck.length);
+                console.log(playerTwoDeck.length);
+                alert("Cards are of equal strenght, the round goes on.")
+            };
+            alert("Wins: \nPlayer 1: " + playerOneWins + "\nPlayer 2: " + playerTwoWins);
+            playerOneDeck.shift();
+            playerTwoDeck.shift();
+        };
 
-    }
-}
+        if (playerOneDeck == 0 && playerTwoDeck == 0) {
+            if (playerOneWins > playerTwoWins) {
+                alert("Player 1 wins " + playerOneWins + " to " + playerTwoWins);
+            } else if (playerOneWins < playerTwoWins) {
+                alert("Player 2 wins " + playerTwoWins + " to " + playerOneWins);
+            } else if (playerOneWins == playerTwoWins) {
+                alert("The score is " + playerOneWins + " to " + playerTwoWins + "\nDraw.")
+            };
+        };
+    };
+};
 bottone.addEventListener("click", battle);
